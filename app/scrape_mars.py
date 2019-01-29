@@ -8,6 +8,8 @@
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import requests
+from pprint import pprint
+print("Hello")
 
 def scrape():
     # # NASA
@@ -20,12 +22,16 @@ def scrape():
 
 
     # In[3]:
-
-
-    # Retrieve page with the requests module
-    response = requests.get(url)
-
-
+    print(url)
+    try: 
+        # Retrieve page with the requests module
+        response = requests.get(url)
+        print("Awaiting response")
+        # print(response)
+    except AttributeError as Atterror:
+        print("Inside except block")
+        print(Atterror)
+        print(url)
     # In[4]:
 
 
@@ -66,8 +72,8 @@ def scrape():
 
 
     # This portion of the homework uses Splinter, which we were asked not to use. I have added the link to the featured image after searching for it manually.
-    featured_image_url: "https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA14924_ip.jpg"
-
+    featured_image_url = "https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA14924_ip.jpg"
+    print(featured_image_url)
     # Store url to dictionary
     scrape_mars_dict['featured_image_url'] = featured_image_url
 
@@ -127,17 +133,17 @@ def scrape():
 
 
     # Use Pandas to convert the data to a HTML table string
-    result_df = result_df.to_html()
+    result_df1 = result_df.to_html()
 
 
     # In[26]:
 
 
     # Check HTML output
-    result_df
+    result_df1
 
     # Store html file to dictionary
-    scrape_mars_dict['mars_facts'] = result_df
+    scrape_mars_dict['mars_facts'] = result_df1
 
     # # Mars Hemispheres
 
@@ -173,3 +179,10 @@ def scrape():
 
 
     return scrape_mars_dict
+
+    # Testing
+
+# mars_data_result = scrape() 
+# print("Final Result")
+# pprint(mars_data_result)
+

@@ -15,7 +15,7 @@ client = pymongo.MongoClient(conn)
 db = client.mars_db
 
 # Declare the collection
-collection = db.mars_db
+collection = db.mars_db_collection
 
 
 # Create route that renders index.html template
@@ -29,9 +29,12 @@ def echo():
 # Add a new route
 @app.route("/scrape")
 def scrape():
-    mars_data = collection.mars_data
+    # mars_data = collection.mars_data
+    print("Before")
     mars_data_scrape = scrape_mars.scrape()
-    mars_data.update({}, mars_data_scrape, upsert=True)
+    print("After")
+    print(mars_data_scrape)
+    collection.update({}, mars_data_scrape, upsert=True)
    
 
 
